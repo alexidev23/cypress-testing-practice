@@ -94,4 +94,13 @@ describe('Practicando lo basico', () => {
     cy.get('.todo-list li').should('not.contain.text', 'Tarea Finalizada 1')
     cy.get('.todo-list li').should('not.contain.text', 'Tarea finalizada 2')
   })
+
+  it('Verificar que el contador de tareas pendientes se actualiza', () => {
+    cy.get('.new-todo').type('Tarea 1{enter}')
+    cy.get('.new-todo').type('Tarea 2{enter}')
+    cy.get('.todo-count').should('contain.text', '4 items left')
+
+    cy.contains('li', 'Tarea 1').find('.toggle').click()
+    cy.get('.todo-count').should('contain.text', '3 items left')
+  })
 })
