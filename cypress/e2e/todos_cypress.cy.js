@@ -103,4 +103,9 @@ describe('Practicando lo basico', () => {
     cy.contains('li', 'Tarea 1').find('.toggle').click()
     cy.get('.todo-count').should('contain.text', '3 items left')
   })
+
+  it('Comprobar comportamiento al ingresar una tarea vacía', () => {
+    cy.get('.new-todo').type('{enter}')
+    cy.get('.todo-list li').should('have.length', 0)  
+  })
 })
